@@ -1,5 +1,7 @@
 > **Come leggere questa guida:** per visualizzare correttamente il contenuto di questo file, nell'Explorer di VS Code fai **tasto destro** su `README.md` e scegli **"Open Preview"**.
 
+---
+
 # Lezione Bash03 - Comandi filtro
 
 ## Obiettivo
@@ -13,9 +15,11 @@ In questa lezione imparerai a **cercare file** nel filesystem, a descrivere **pa
 Apri il terminale e lancia lo script di setup per creare i file e le cartelle necessarie agli esercizi:
 
 ```bash
-cd /workspaces/Lezione_Bash03
+cd /workspaces/*Lezione_Bash03*
 bash setup.sh
 ```
+
+> **Nota:** il nome esatto della tua cartella potrebbe essere diverso da `Lezione_Bash03` (ad esempio `Lezione_Bash03-tuonome`). Il carattere jolly `*` nel comando `cd` seleziona automaticamente la cartella giusta — lo hai già imparato nella Lezione Bash02!
 
 Se durante gli esercizi combini qualche guaio e vuoi ricominciare, puoi rilanciare lo script in qualsiasi momento: cancellerà tutto e ricreerà l'ambiente da zero.
 
@@ -83,7 +87,7 @@ find esercizi/progetto -name "*.cfg" -exec wc -l {} \;
 <summary>Solo dopo aver svolto l'esercizio, apri qui per vedere la soluzione</summary>
 
 ```bash
-cd /workspaces/Lezione_Bash03
+cd /workspaces/*Lezione_Bash03*
 
 # 1. Tutti i file .java
 find esercizi/progetto -name "*.java"
@@ -172,7 +176,7 @@ Non confonderle! Quando usi `find -name "*.txt"`, il `*` è una wildcard. Quando
 [a-z]+@[a-z]+\.[a-z] → pattern base di un indirizzo email
 ```
 
-> ⚠️ **Nota:** il punto `.` nelle regex significa "qualsiasi carattere". Se vuoi cercare un punto letterale, devi "escaparlo" con il backslash: `\.`
+> ⚠️ **Nota:** il punto `.` nelle regex significa "qualsiasi carattere". Se vuoi cercare un punto letterale, devi usarlo con "escape" con il backslash: `\.`
 
 ### Esercizio 2.1
 
@@ -282,7 +286,7 @@ Un altro modo è usare `find` con la pipeline e `xargs` (se lo conosci), ma `-ex
 <summary>Solo dopo aver svolto l'esercizio, apri qui per vedere la soluzione</summary>
 
 ```bash
-cd /workspaces/Lezione_Bash03
+cd /workspaces/*Lezione_Bash03*
 
 # 1. Righe con ERROR
 grep "ERROR" esercizi/log/server.log
@@ -331,7 +335,7 @@ grep -rn "TODO" esercizi/progetto/
 <summary>Solo dopo aver svolto l'esercizio, apri qui per vedere la soluzione</summary>
 
 ```bash
-cd /workspaces/Lezione_Bash03
+cd /workspaces/*Lezione_Bash03*
 
 # 1. Cercare email (pattern semplificato)
 grep -E "[a-zA-Z0-9._]+@[a-zA-Z0-9]+\.[a-zA-Z]+" esercizi/dati/contatti.txt
@@ -437,7 +441,7 @@ Il file `esercizi/dati/testo_da_correggere.txt` contiene diversi errori di batti
 <summary>Solo dopo aver svolto l'esercizio, apri qui per vedere la soluzione</summary>
 
 ```bash
-cd /workspaces/Lezione_Bash03
+cd /workspaces/*Lezione_Bash03*
 
 # Prima controlliamo il file
 cat esercizi/dati/testo_da_correggere.txt
@@ -472,7 +476,7 @@ cat esercizi/dati/testo_da_correggere.txt
 <summary>Solo dopo aver svolto l'esercizio, apri qui per vedere la soluzione</summary>
 
 ```bash
-cd /workspaces/Lezione_Bash03
+cd /workspaces/*Lezione_Bash03*
 
 # 1. Prima vediamo quali file contengono "1.0.3"
 grep -r "1.0.3" esercizi/progetto/
@@ -593,7 +597,7 @@ Lavora sul file `esercizi/dati/studenti.csv`:
 <summary>Solo dopo aver svolto l'esercizio, apri qui per vedere la soluzione</summary>
 
 ```bash
-cd /workspaces/Lezione_Bash03
+cd /workspaces/*Lezione_Bash03*
 
 # 1. Nomi e cognomi (campi 3 e 2, saltando l'header)
 awk -F',' 'NR > 1 {print $3, $2}' esercizi/dati/studenti.csv
@@ -643,7 +647,7 @@ Lavora sul file `esercizi/dati/dipendenti.csv` (separatore `;`):
 <summary>Solo dopo aver svolto l'esercizio, apri qui per vedere la soluzione</summary>
 
 ```bash
-cd /workspaces/Lezione_Bash03
+cd /workspaces/*Lezione_Bash03*
 
 # 1. Nome Cognome (Reparto)
 awk -F';' 'NR > 1 {print $3, $2, "(" $4 ")"}' esercizi/dati/dipendenti.csv
@@ -690,7 +694,7 @@ Trova tutti i `TODO` nei file `.java` del progetto e crea un report `todo_report
 <summary>Solo dopo aver svolto l'esercizio, apri qui per vedere la soluzione</summary>
 
 ```bash
-cd /workspaces/Lezione_Bash03
+cd /workspaces/*Lezione_Bash03*
 
 find esercizi/progetto -name "*.java" -exec grep -n "TODO" {} \; > esercizi/sandbox/todo_report.txt
 
@@ -717,7 +721,7 @@ Analizzando `esercizi/log/accessi.log`:
 <summary>Solo dopo aver svolto l'esercizio, apri qui per vedere la soluzione</summary>
 
 ```bash
-cd /workspaces/Lezione_Bash03
+cd /workspaces/*Lezione_Bash03*
 
 # Tutto in una pipeline
 grep "401" esercizi/log/accessi.log | awk '{print $1}' | sort | uniq -c | sort -rn > esercizi/sandbox/report_sicurezza.txt
@@ -745,7 +749,7 @@ cat esercizi/sandbox/report_sicurezza.txt
 <summary>Solo dopo aver svolto l'esercizio, apri qui per vedere la soluzione</summary>
 
 ```bash
-cd /workspaces/Lezione_Bash03
+cd /workspaces/*Lezione_Bash03*
 
 cp esercizi/progetto/config/app.cfg esercizi/sandbox/app_pulito.cfg
 
@@ -785,7 +789,7 @@ Lavora sul file `esercizi/dati/voti_registro.txt`:
 <summary>Solo dopo aver svolto l'esercizio, apri qui per vedere la soluzione</summary>
 
 ```bash
-cd /workspaces/Lezione_Bash03
+cd /workspaces/*Lezione_Bash03*
 
 # 1. Voti di Colombo
 grep "Colombo" esercizi/dati/voti_registro.txt

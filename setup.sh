@@ -8,8 +8,8 @@
 echo "🔧 Creazione ambiente di esercitazione..."
 echo ""
 
-# Directory base
-BASE_DIR="/workspaces/Lezione_Bash03"
+# Directory base (rileva automaticamente la directory del repository)
+BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # Pulizia ambiente precedente (se esiste)
 rm -rf "$BASE_DIR/esercizi"
